@@ -319,3 +319,38 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize form
   showStep(1);
 });
+
+// Add to your script.js
+function createPetals() {
+  const petalCount = 15;
+  for (let i = 0; i < petalCount; i++) {
+    const petal = document.createElement('div');
+    petal.className = 'petal';
+    petal.innerHTML = '🌸';
+    petal.style.left = Math.random() * 100 + 'vw';
+    petal.style.animationDuration = 5 + Math.random() * 10 + 's';
+    petal.style.animationDelay = Math.random() * 5 + 's';
+    document.body.appendChild(petal);
+  }
+}
+
+window.addEventListener("load", () => {
+  const petalContainer = document.createElement("div");
+  petalContainer.className = "petal-container";
+  document.body.appendChild(petalContainer);
+
+  // Create 15 petals
+  for (let i = 0; i < 15; i++) {
+    const petal = document.createElement("div");
+    petal.className = "petal";
+    petal.innerHTML = "🌸";
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.animationDelay = Math.random() * 2 + "s";
+    petalContainer.appendChild(petal);
+  }
+
+  // Remove after animation
+  setTimeout(() => {
+    petalContainer.remove();
+  }, 10000);
+});
