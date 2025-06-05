@@ -324,12 +324,12 @@ document.addEventListener("DOMContentLoaded", function () {
 function createPetals() {
   const petalCount = 15;
   for (let i = 0; i < petalCount; i++) {
-    const petal = document.createElement('div');
-    petal.className = 'petal';
-    petal.innerHTML = '🌸';
-    petal.style.left = Math.random() * 100 + 'vw';
-    petal.style.animationDuration = 5 + Math.random() * 10 + 's';
-    petal.style.animationDelay = Math.random() * 5 + 's';
+    const petal = document.createElement("div");
+    petal.className = "petal";
+    petal.innerHTML = "🌸";
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.animationDuration = 5 + Math.random() * 10 + "s";
+    petal.style.animationDelay = Math.random() * 5 + "s";
     document.body.appendChild(petal);
   }
 }
@@ -353,4 +353,47 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     petalContainer.remove();
   }, 10000);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const sparkleContainer = document.createElement("div");
+  sparkleContainer.className = "sparkle-trail";
+  document.body.appendChild(sparkleContainer);
+
+  function createSparkle(e) {
+    if (e.clientY < 100) return; // Only below certain point
+
+    const sparkle = document.createElement("div");
+    sparkle.className = "sparkle";
+    sparkle.style.left = e.clientX + "px";
+    sparkle.style.top = e.clientY + "px";
+    sparkleContainer.appendChild(sparkle);
+
+    setTimeout(() => {
+      sparkle.remove();
+    }, 1000);
+  }
+
+  // Initial sparkle trail on load
+  const positions = [
+    { x: 10, y: 10 },
+    { x: 30, y: 50 },
+    { x: 60, y: 30 },
+    { x: 90, y: 70 },
+    { x: 50, y: 90 },
+  ];
+
+  positions.forEach((pos, i) => {
+    setTimeout(() => {
+      createSparkle({
+        clientX: (pos.x * window.innerWidth) / 100,
+        clientY: (pos.y * window.innerHeight) / 100,
+      });
+    }, i * 200);
+  });
+
+  // Remove container after animation
+  setTimeout(() => {
+    sparkleContainer.remove();
+  }, 3000);
 });
