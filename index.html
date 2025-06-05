@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Andrew & Joy's Wedding - RSVP</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Animate.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="container-fluid wedding-container p-0">
+      <!-- Confetti Canvas -->
+      <canvas id="confetti-canvas"></canvas>
+
+      <header class="hero-section text-white py-5">
+        <div class="hero-overlay"></div>
+        <div class="container position-relative">
+          <div class="couple-names">
+            <h1 class="display-3 fw-bold mb-0">Andrew Persent</h1>
+            <div class="ampersand">&</div>
+            <h1 class="display-3 fw-bold mb-0">Joy Adams</h1>
+          </div>
+          <p class="invitation-text mb-4">
+            Request the pleasure of your company
+          </p>
+          <p class="wedding-date mb-5">
+            <i class="fas fa-calendar-alt me-2"></i>September 20, 2025
+            <i class="fas fa-map-marker-alt ms-4 me-2"></i>Huis Hebron,
+            Delportshoop 8377
+          </p>
+          <button class="btn btn-rsvp btn-lg px-4 rsvp-btn" id="openRsvpBtn">
+            <i class="fas fa-envelope me-2"></i>RSVP Now
+          </button>
+        </div>
+      </header>
+
+      <!-- RSVP Counter -->
+      <section class="rsvp-counter py-4">
+        <div class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="counter-card p-3 animate__animated animate__fadeInUp">
+                <h3 class="mb-3">Celebration Countdown</h3>
+                <div class="d-flex justify-content-around">
+                  <div class="counter-item">
+                    <div class="number" id="days-counter">-</div>
+                    <div class="label">Days</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content -->
+      <main class="container my-5">
+        <section class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <h2 class="section-title mb-4">Celebrate With Us</h2>
+            <p class="lead mb-4">Join us as we begin our forever together</p>
+            <p class="mb-5">Kindly respond by August 22nd , 2025</p>
+
+            <div class="mt-5">
+              <button
+                class="btn btn-rsvp btn-lg px-4 rsvp-btn"
+                id="openRsvpBtn2"
+              >
+                <i class="fas fa-reply me-2"></i>Respond to Invitation
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Updated RSVP Modal -->
+      <div
+        class="modal fade"
+        id="rsvpModal"
+        tabindex="-1"
+        aria-labelledby="rsvpModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title" id="rsvpModalLabel">Wedding RSVP</h2>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="form-progress mb-4">
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: 25%"
+                    id="formProgress"
+                  ></div>
+                </div>
+                <small class="progress-text">Step 1 of 4</small>
+              </div>
+
+              <form
+                id="weddingRsvpForm"
+                novalidate
+                action="https://formspree.io/f/mgvyeqka"
+                method="POST"
+              >
+                <!-- Step 1: Personal Info -->
+                <div class="form-step active" data-step="1">
+                  <h4 class="step-title mb-4">Your Information</h4>
+                  <div class="row mb-4">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                      <label for="firstName" class="form-label"
+                        >First Name*</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        name="firstName"
+                        required
+                      />
+                      <div class="invalid-feedback">
+                        Please provide your first name
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="lastName" class="form-label"
+                        >Last Name*</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        name="lastName"
+                        required
+                      />
+                      <div class="invalid-feedback">
+                        Please provide your last name
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="email" class="form-label">Email Address*</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      name="email"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Please provide a valid email
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-next" data-next="2">
+                      Next <i class="fas fa-arrow-right ms-2"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Step 2: Attendance -->
+                <div class="form-step" data-step="2">
+                  <h4 class="step-title mb-4">Will You Attend?</h4>
+                  <div class="mb-4">
+                    <div class="form-check attendance-option">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="attendance"
+                        id="attendingYes"
+                        value="yes"
+                        required
+                      />
+                      <label class="form-check-label" for="attendingYes">
+                        <i class="fas fa-check-circle me-2"></i> Accept with
+                        pleasure
+                      </label>
+                    </div>
+                    <div class="form-check attendance-option">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="attendance"
+                        id="attendingNo"
+                        value="no"
+                      />
+                      <label class="form-check-label" for="attendingNo">
+                        <i class="fas fa-times-circle me-2"></i> Decline with
+                        regret
+                      </label>
+                    </div>
+                    <div class="invalid-feedback attendance-feedback">
+                      Please select an option
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-prev" data-prev="1">
+                      <i class="fas fa-arrow-left me-2"></i> Back
+                    </button>
+                    <button type="button" class="btn btn-next" data-next="3">
+                      Next <i class="fas fa-arrow-right ms-2"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Step 3: Guest Details -->
+                <div class="form-step" data-step="3">
+                  <h4 class="step-title mb-4">Guest Information</h4>
+                  <div id="guestDetails" class="mb-4">
+                    <label class="form-label">Number of Guests*</label>
+                    <select
+                      class="form-select"
+                      id="guestCount"
+                      name="guestCount"
+                      required
+                    >
+                      <option value="" selected disabled>
+                        Select number of guests
+                      </option>
+                      <option value="1">1 (Just me)</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5+</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select number of guests
+                    </div>
+
+                    <div id="additionalGuestsContainer" class="mt-3">
+                      <!-- Dynamic guest fields will be added here -->
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-prev" data-prev="2">
+                      <i class="fas fa-arrow-left me-2"></i> Back
+                    </button>
+                    <button type="button" class="btn btn-next" data-next="4">
+                      Next <i class="fas fa-arrow-right ms-2"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Step 4: Additional Info -->
+                <div class="form-step" data-step="4">
+                  <h4 class="step-title mb-4">Additional Information</h4>
+                  <div class="mb-4">
+                    <label for="dietaryRequirements" class="form-label"
+                      >Dietary Requirements</label
+                    >
+                    <textarea
+                      class="form-control"
+                      id="dietaryRequirements"
+                      name="dietaryRequirements"
+                      rows="2"
+                      placeholder="Any allergies or special dietary needs?"
+                    ></textarea>
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="songRequest" class="form-label"
+                      >Song Request</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="songRequest"
+                      name="songRequest"
+                      placeholder="Which song would get you on the dance floor?"
+                    />
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="message" class="form-label"
+                      >Message for the Couple</label
+                    >
+                    <textarea
+                      class="form-control"
+                      id="message"
+                      name="message"
+                      rows="3"
+                      placeholder="Leave a sweet note for Andrew & Joy"
+                    ></textarea>
+                  </div>
+
+                  <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-prev" data-prev="3">
+                      <i class="fas fa-arrow-left me-2"></i> Back
+                    </button>
+                    <button type="submit" class="btn btn-rsvp">
+                      <i class="fas fa-paper-plane me-2"></i>Submit RSVP
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enhanced Confirmation Toast -->
+      <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div
+          id="confirmationToast"
+          class="toast"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div class="toast-header">
+            <strong class="me-auto"
+              ><i class="fas fa-check-circle me-2"></i> RSVP Submitted</strong
+            >
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="toast"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="toast-body">
+            <div class="toast-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <p class="toast-message">Thank you for your RSVP!</p>
+            <p class="mb-0" id="toastDetails"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Confetti.js -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Custom JS -->
+    <script src="./js/script.js"></script>
+  </body>
+</html>

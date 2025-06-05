@@ -1,0 +1,356 @@
+/* Modern Wedding Theme Styles */
+:root {
+  --wine-red: #722f37;
+  --rose-gold: #e0bfb8;
+  --rose-gold-light: #f3e9e5;
+  --rose-gold-dark: #d4a59a;
+  --dark-text: #333333;
+  --light-text: #f8f9fa;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--rose-gold-light);
+  color: var(--dark-text);
+  line-height: 1.6;
+}
+
+.wedding-container {
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  background: url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80")
+    no-repeat center center;
+  background-size: cover;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(114, 47, 55, 0.7); /* Wine red with transparency */
+}
+
+.hero-section .container {
+  z-index: 1;
+  padding: 2rem;
+}
+
+.couple-names {
+  margin-bottom: 1.5rem;
+}
+
+.couple-names h1 {
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--light-text);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.ampersand {
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  color: var(--rose-gold);
+  margin: -1rem 0;
+  font-weight: 400;
+}
+
+.invitation-text {
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+  margin-bottom: 2rem !important;
+}
+
+.wedding-date {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: var(--light-text);
+  margin-bottom: 3rem !important;
+}
+
+/* Buttons */
+.btn-rsvp {
+  background-color: var(--rose-gold);
+  color: var(--wine-red);
+  border: none;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.btn-rsvp:hover {
+  background-color: var(--rose-gold-dark);
+  color: var(--wine-red);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Content */
+.section-title {
+  font-weight: 600;
+  font-size: 2.5rem;
+  color: var(--wine-red);
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: var(--rose-gold);
+}
+
+/* Modal Customization */
+.modal-content {
+  border-radius: 0;
+  border: none;
+}
+
+.modal-header {
+  background-color: var(--wine-red);
+  color: var(--light-text);
+  border-bottom: none;
+  padding: 1.5rem;
+}
+
+.modal-title {
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.form-control,
+.form-select {
+  border-radius: 0;
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--rose-gold);
+  box-shadow: 0 0 0 0.25rem rgba(224, 191, 184, 0.25);
+}
+
+/* Toast Customization */
+.toast {
+  border-radius: 0;
+  border-left: 4px solid var(--rose-gold);
+  width: 350px;
+  max-width: 100%;
+}
+
+.toast-header {
+  background-color: var(--wine-red);
+  color: var(--light-text);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 60vh;
+  }
+
+  .couple-names h1 {
+    font-size: 2.5rem;
+  }
+
+  .ampersand {
+    font-size: 2rem;
+    margin: -0.5rem 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal-body {
+    padding: 1.5rem;
+  }
+}
+
+
+/* Add these new styles to your existing CSS */
+
+/* Confetti Canvas */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+/* RSVP Counter */
+.rsvp-counter {
+    background-color: var(--rose-gold-light);
+    border-top: 1px solid var(--rose-gold);
+    border-bottom: 1px solid var(--rose-gold);
+}
+
+.counter-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(114, 47, 55, 0.1);
+}
+
+.counter-item {
+    text-align: center;
+}
+
+.counter-item .number {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--wine-red);
+}
+
+.counter-item .label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--rose-gold-dark);
+}
+
+/* Form Steps */
+.form-progress {
+    margin-bottom: 2rem;
+}
+
+.progress {
+    height: 6px;
+    background-color: var(--rose-gold-light);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background-color: var(--rose-gold-dark);
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    display: block;
+    text-align: right;
+    color: var(--rose-gold-dark);
+    font-size: 0.8rem;
+}
+
+.form-step {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.form-step.active {
+    display: block;
+}
+
+.step-title {
+    color: var(--wine-red);
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.step-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--rose-gold);
+}
+
+/* Attendance Options */
+.attendance-option {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 2px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.attendance-option:hover {
+    border-color: var(--rose-gold);
+}
+
+.attendance-option .form-check-input {
+    margin-top: 0.3rem;
+}
+
+/* Navigation Buttons */
+.btn-next, .btn-prev {
+    min-width: 120px;
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 500;
+}
+
+.btn-next {
+    background-color: var(--wine-red);
+    color: white;
+    border: none;
+}
+
+.btn-prev {
+    background-color: transparent;
+    color: var(--wine-red);
+    border: 1px solid var(--wine-red);
+}
+
+/* Enhanced Toast */
+.toast-icon {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--rose-gold);
+    margin-bottom: 1rem;
+}
+
+.toast-message {
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .counter-item .number {
+        font-size: 1.5rem;
+    }
+    
+    .form-step {
+        padding: 0 10px;
+    }
+}
